@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>人格测试</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .question { margin-bottom: 10px; }
+    .answer { margin-left: 20px; }
+    .result { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>人格测试</h1>
+
+  <div class="question">
+    问题 1: 你在多大程度上同意以下陈述："我喜欢探索新的想法和经验。"
+    <br><input type="radio" name="q1" value="1"> 非常不同意
+    <br><input type="radio" name="q1" value="2"> 不同意
+    <br><input type="radio" name="q1" value="3"> 中立
+    <br><input type="radio" name="q1" value="4"> 同意
+  </div>
+
+  <div class="question">
+    问题 2: 你在多大程度上同意以下陈述："我喜欢学习新事物，即使它们并不容易。"
+    <br><input type="radio" name="q2" value="1"> 非常不同意
+    <br><input type="radio" name="q2" value="2"> 不同意
+    <br><input type="radio" name="q2" value="3"> 中立
+    <br><input type="radio" name="q2" value="4"> 同意
+  </div>
+
+  <div class="question">
+    问题 3: 你在多大程度上同意以下陈述："我常常被新想法和项目所吸引。"
+    <br><input type="radio" name="q3" value="1"> 非常不同意
+    <br><input type="radio" name="q3" value="2"> 不同意
+    <br><input type="radio" name="q3" value="3"> 中立
+    <br><input type="radio" name="q3" value="4"> 同意
+  </div>
+
+  <div class="question">
+    问题 4: 你在多大程度上同意以下陈述："我喜欢阅读有深度和复杂性的书籍和文章。"
+    <br><input type="radio" name="q4" value="1"> 非常不同意
+    <br><input type="radio" name="q4" value="2"> 不同意
+    <br><input type="radio" name="q4" value="3"> 中立
+    <br><input type="radio" name="q4" value="4"> 同意
+  </div>
+
+  <div class="question">
+    问题 5: 你在多大程度上同意以下陈述："我喜欢与那些有不同背景和观点的人交流。"
+    <br><input type="radio" name="q5" value="1"> 非常不同意
+    <br><input type="radio" name="q5" value="2"> 不同意
+    <br><input type="radio" name="q5" value="3"> 中立
+    <br><input type="radio" name="q5" value="4"> 同意
+  </div>
+
+  <div class="question">
+    问题 6: 你在多大程度上同意以下陈述："我倾向于寻找新的和有创意的解决方案。"
+    <br><input type="radio" name="q6" value="1"> 非常不同意
+    <br><input type="radio" name="q6" value="2"> 不同意
+    <br><input type="radio" name="q6" value="3"> 中立
+    <br><input type="radio" name="q6" value="4"> 同意
+  </div>
+
+  <button type="button" onclick="calculateScore()">计算分数</button>
+
+  <div class="result"></div>
+
+  <script>
+    function calculateScore() {
+      var questions = document.querySelectorAll('.question');
+      var scores = [0, 0, 0, 0, 0, 0];
+
+      questions.forEach(function(question, index) {
+        var radioButtons = question.querySelectorAll('input[type="radio"]');
+        var selectedValue = radioButtons[0].value;
+
+        scores[index] = parseInt(selectedValue);
+      });
+
+      var totalScore = scores.reduce(function(previousValue, currentValue) {
+        return previousValue + currentValue;
+      }, 0);
+
+      var result = document.querySelector('.result');
+
+      if (totalScore >= 24) {
+        result.textContent = '你的得分表明你有非常强烈的开放性！';
+      } else if (totalScore >= 19) {
+        result.textContent = '你的得分表明你有较强的开放性。';
+      } else if (totalScore >= 14) {
+        result.textContent = '你的得分表明你有中等程度的开放性。';
+      } else if (totalScore >= 9) {
+        result.textContent = '你的得分表明你有较弱的开放性。';
+      } else if (totalScore >= 4) {
+        result.textContent = '你的得分表明你有非常弱的开放性。';
+      } else {
+        result.textContent = '你的得分无法评估开放性。请确保回答了所有问题。';
+      }
+    }
+  </script>
+</body>
+</html>
